@@ -13,8 +13,8 @@ import java.math.BigDecimal;
 @Table(value = "account")
 public class AccountEntity {
     @Id
-    private int id;
+    private Integer id;
     @Column(value = "client_id")
-    private int clientId;
+    private Integer clientId;
     private BigDecimal balance;
 }

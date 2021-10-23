@@ -1,17 +1,17 @@
 package com.jdgonzalez907.msdinnents.infrastructure.mappers;
 
-import com.jdgonzalez907.msdinnents.domain.Account;
+import com.jdgonzalez907.msdinnents.domain.account.Account;
+import com.jdgonzalez907.msdinnents.domain.client.Client;
 import com.jdgonzalez907.msdinnents.infrastructure.entities.AccountEntity;
-import com.jdgonzalez907.msdinnents.shared.Mapper;
+import org.springframework.stereotype.Component;
 
-public class AccountMapper implements Mapper<AccountEntity, Account> {
-    @Override
-    public AccountEntity toEntity(Account domain) {
-        return new AccountEntity(domain.getId(), 0, domain.getBalance());
+@Component
+public class AccountMapper {
+    public AccountEntity toEntity(Account domain, Client client) {
+        return new AccountEntity(domain.getId(), client.getId(), domain.getBalance());
     }
 
-    @Override
     public Account toDomain(AccountEntity entity) {
-        return new Account(entity.getId(), entity.getBalance());
+        return new Account(entity.getId(), entity.getClientId(), entity.getBalance());
     }
 }

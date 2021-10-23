@@ -1,6 +1,7 @@
-package com.jdgonzalez907.msdinnents.domain;
+package com.jdgonzalez907.msdinnents.domain.client;
 
-import com.jdgonzalez907.msdinnents.shared.Aggregate;
+import com.jdgonzalez907.msdinnents.domain.account.Account;
+import com.jdgonzalez907.msdinnents.shared.domain.Aggregate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
