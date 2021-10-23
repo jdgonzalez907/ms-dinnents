@@ -1,5 +1,6 @@
 package com.jdgonzalez907.msdinnents.domain;
 
+import com.jdgonzalez907.msdinnents.shared.Aggregate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
