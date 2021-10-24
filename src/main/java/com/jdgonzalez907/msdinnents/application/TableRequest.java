@@ -12,7 +12,7 @@ import java.util.Map;
 public class TableRequest {
     public enum Filter {
         TC, UG, RI, RF
-    };
+    }
 
     String tableName;
     Map<Filter, String> filters;

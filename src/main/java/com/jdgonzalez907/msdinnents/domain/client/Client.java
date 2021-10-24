@@ -24,5 +24,5 @@ public class Client implements Aggregate {
         return this.accounts.stream()
                 .map(Account::getBalance)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
-    };
+    }
 }

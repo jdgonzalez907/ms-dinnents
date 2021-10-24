@@ -2,7 +2,6 @@ package com.jdgonzalez907.msdinnents.infrastructure.repositories;
 
 import com.jdgonzalez907.msdinnents.domain.client.Client;
 import com.jdgonzalez907.msdinnents.domain.client.ClientRepository;
-import com.jdgonzalez907.msdinnents.infrastructure.entities.ClientEntity;
 import com.jdgonzalez907.msdinnents.infrastructure.mappers.AccountMapper;
 import com.jdgonzalez907.msdinnents.infrastructure.mappers.ClientMapper;
 import org.springframework.stereotype.Repository;
@@ -35,7 +34,7 @@ public class ClientRepositoryImpl implements ClientRepository {
                                         clientEntity,
                                         tuple.getT1().stream()
                                                 .filter(accountEntity -> accountEntity.getClientId().equals(clientEntity.getId())).collect(Collectors.toList())
-                                        )
+                                )
                         )
                 ));
     }
