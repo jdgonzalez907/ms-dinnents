@@ -2,7 +2,7 @@
 
 ## Requisitos:
 - Docker
-- Consola bash
+- Consola (windows = cmd)
 - curl
 
 
