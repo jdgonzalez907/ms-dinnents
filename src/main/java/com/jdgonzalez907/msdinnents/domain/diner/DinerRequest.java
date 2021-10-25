@@ -1,4 +1,4 @@
-package com.jdgonzalez907.msdinnents.application.diner;
+package com.jdgonzalez907.msdinnents.domain.diner;
 
 import com.jdgonzalez907.msdinnents.domain.client.Client;
 import lombok.AllArgsConstructor;

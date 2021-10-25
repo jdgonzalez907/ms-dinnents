@@ -1,6 +1,5 @@
 package com.jdgonzalez907.msdinnents.domain.diner;
 
-import com.jdgonzalez907.msdinnents.application.diner.DinerRequest;
 import com.jdgonzalez907.msdinnents.domain.client.Client;
 import com.jdgonzalez907.msdinnents.domain.client.ClientRepository;
 import com.jdgonzalez907.msdinnents.infrastructure.clients.CodeDecryptClient;

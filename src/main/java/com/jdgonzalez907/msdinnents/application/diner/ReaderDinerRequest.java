@@ -1,5 +1,6 @@
 package com.jdgonzalez907.msdinnents.application.diner;
 
+import com.jdgonzalez907.msdinnents.domain.diner.DinerRequest;
 import com.jdgonzalez907.msdinnents.shared.application.Reader;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Component
-public class ReaderTableRequest implements Reader<String, List<DinerRequest>> {
+public class ReaderDinerRequest implements Reader<String, List<DinerRequest>> {
 
     private final Predicate<String> conditionTableName = s -> s.startsWith("<") && s.endsWith(">");
 
