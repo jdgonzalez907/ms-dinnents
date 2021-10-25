@@ -25,9 +25,8 @@ public class ClientRepositoryImpl implements ClientRepository {
     }
 
     @Override
-
-    public Flux<Client> findAll() {
-        return Flux.zip(this.accountReactiveRepository.findAll().collectList(), this.clientReactiveRepository.findAll().collectList())
+    public Flux<Client> findByEncrypt(Boolean encrypt) {
+        return Flux.zip(this.accountReactiveRepository.findAll().collectList(), this.clientReactiveRepository.findByEncrypt(encrypt ? 1 : 0).collectList())
                 .flatMap(tuple -> Flux.fromStream(
                         tuple.getT2().stream().map(clientEntity -> this.clientMapper
                                 .toDomain(

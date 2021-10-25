@@ -27,7 +27,7 @@ public class ClientMapper {
     }
 
     public Client toDomain(ClientEntity entity, List<AccountEntity> accountEntities) {
-        return new Client(entity.getId(), entity.getCode(), Utils.integerToBoolean(entity.getMale()), entity.getType(),
+        return new Client(entity.getId(), entity.getCode(), entity.getCode(), Utils.integerToBoolean(entity.getMale()), entity.getType(),
                 entity.getLocation(), entity.getCompany(), Utils.integerToBoolean(entity.getEncrypt()),
                 accountEntities.stream()
                         .map(accountEntity -> accountMapper.toDomain(accountEntity))

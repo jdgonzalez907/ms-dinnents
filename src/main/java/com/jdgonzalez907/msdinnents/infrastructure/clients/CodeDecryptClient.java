@@ -18,6 +18,6 @@ public class CodeDecryptClient {
     public Mono<ClientCodeDecrypt> consume(Client client) {
         return this.webClient.get().uri("/{code}", client.getCode())
                 .retrieve().bodyToMono(String.class)
-                .map(decryptCode -> new ClientCodeDecrypt(decryptCode, client));
+                .map(decryptCode -> new ClientCodeDecrypt(decryptCode.replace("\"", ""), client));
     }
 }

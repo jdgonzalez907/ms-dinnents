@@ -1,4 +1,4 @@
-package com.jdgonzalez907.msdinnents.application;
+package com.jdgonzalez907.msdinnents.domain.diner;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,13 +8,13 @@ import java.util.stream.Collectors;
 
 @Data
 @AllArgsConstructor
-public class TableResponse {
+public class Diner {
     String tableName;
     List<String> clientCodes;
 
     @Override
     public String toString() {
-        return String.format("<%s>\n%s\n", this.getTableName(), this.joininClienCodes());
+        return String.format("%s\n%s\n", this.getTableName(), this.joininClienCodes());
     }
 
     private String joininClienCodes() {
