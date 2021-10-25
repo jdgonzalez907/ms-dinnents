@@ -58,16 +58,16 @@ public class DinerService {
                 .publishOn(Schedulers.single());
     }
 
-    private List<Diner> processRequest(List<DinerRequest> dinerRequests, List<Diner> tableRespons, List<Client> clients, List<Client> accuClientsProccesed) {
+    private List<Diner> processRequest(List<DinerRequest> dinerRequests, List<Diner> diners, List<Client> clients, List<Client> accuClientsProccesed) {
         Optional<DinerRequest> first = dinerRequests.stream().findFirst();
         if (first.isEmpty()) {
-            return tableRespons;
+            return diners;
         } else {
             DinerRequest requestFound = first.get();
 
             List<DinerRequest> othersRequests = getOthersRequests(dinerRequests, requestFound);
 
-            List<Client> tableClients = getFilteredTableClients(clients, requestFound);
+            List<Client> tableClients = filterClients(clients, requestFound);
 
             Diner diner = new Diner(
                     requestFound.getTableName(),
@@ -76,13 +76,13 @@ public class DinerService {
                             .collect(Collectors.toList())
             );
 
-            List<Diner> responseProccesed = getResponsesProcessed(tableRespons, diner);
+            List<Diner> dinersProcessed = getDinersProcessed(diners, diner);
 
-            List<Client> clientsToProcces = getClientsToProcess(clients, tableClients);
+            List<Client> clientsToProcess = getClientsToProcess(clients, tableClients);
 
-            List<Client> clientsProccesed = getClientsProccesed(accuClientsProccesed, tableClients);
+            List<Client> clientsProcessed = getClientsProccesed(accuClientsProccesed, tableClients);
 
-            return processRequest(othersRequests, responseProccesed, clientsToProcces, clientsProccesed);
+            return processRequest(othersRequests, dinersProcessed, clientsToProcess, clientsProcessed);
         }
 
     }
@@ -99,14 +99,14 @@ public class DinerService {
                 .collect(Collectors.toList());
     }
 
-    private List<Diner> getResponsesProcessed(List<Diner> tableRespons, Diner diner) {
-        return Stream.of(tableRespons, Collections.singletonList(diner))
+    private List<Diner> getDinersProcessed(List<Diner> diners, Diner diner) {
+        return Stream.of(diners, Collections.singletonList(diner))
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
     }
 
-    private List<Client> getFilteredTableClients(List<Client> clients, DinerRequest requestFound) {
-        List<Client> filteredClients = applyFilters(requestFound.getFilters(), clients, Collections.emptyList()).stream()
+    private List<Client> filterClients(List<Client> clients, DinerRequest request) {
+        List<Client> filteredClients = applyFilters(request.getFilters(), clients, Collections.emptyList()).stream()
                 .collect(Collectors.groupingBy(Client::getCompany)).entrySet().stream()
                 .flatMap(group -> group.getValue().stream()
                         .findFirst()
@@ -127,10 +127,10 @@ public class DinerService {
     }
 
     private Stream<Client> filterByGender(List<Client> clients) {
-        var males = clients.stream().filter(Client::getMale).collect(Collectors.toList());
-        var countMales = males.size();
-        var females = clients.stream().filter(client -> !client.getMale()).collect(Collectors.toList());
-        var countFemales = females.size();
+        List<Client> males = clients.stream().filter(Client::getMale).collect(Collectors.toList());
+        Integer countMales = males.size();
+        List<Client> females = clients.stream().filter(client -> !client.getMale()).collect(Collectors.toList());
+        Integer countFemales = females.size();
         if (countMales > countFemales) {
             males.sort(Comparator.comparing(Client::getTotalBalance).thenComparing(Client::getDecryptCode));
             return Stream.concat(males.stream().skip(countMales - countFemales), females.stream());

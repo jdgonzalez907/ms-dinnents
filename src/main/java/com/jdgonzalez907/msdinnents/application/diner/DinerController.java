@@ -28,7 +28,7 @@ public class DinerController {
 
         return this.dinerService
                 .distribute(readerTableRequest.transform(dataFilter))
-                .map(tableResponses -> tableResponses.stream().map(Diner::toString).collect(Collectors.toList()))
+                .map(diners -> diners.stream().map(Diner::toString).collect(Collectors.toList()))
                 .flatMapMany(Flux::fromIterable);
     }
 }
