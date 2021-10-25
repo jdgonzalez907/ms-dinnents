@@ -1,0 +1,19 @@
+version: '3'
+services:
+  dev-mariadb:
+    container_name: dev-mariadb
+    image: mariadb:10
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=0000
+      - MYSQL_DATABASE=evalart_reto
+      - MYSQL_USER=root
+  dev-ms-dinnents:
+    container_name: dev-ms-dinnents
+    build: .
+    image: ms-dinnents
+    ports:
+      - 8080:8080
+    depends_on:
+      - "mariadb"
