@@ -13,7 +13,7 @@
 ```sh
 docker-compose up -d
 ```
-4. Importar la información
+4. Importar la información (a veces es necesario esperar un poco más de 5 a 10 segundos a que esté listo por completo el contenedor de mariadb)
 ```sh
 docker-compose exec dev-mariadb mysql -u root --password=0000 evalart_reto < bd.sql
 ```
